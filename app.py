@@ -3,8 +3,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-# Ruta absoluta basada en la ubicación del propio script, no en el
-# directorio desde el que se ejecuta streamlit (más robusto en la nube).
+# Ruta absoluta
 BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR / "data" / "Data_base_Export.xlsx"
 
@@ -18,7 +17,7 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     if not DATA_PATH.exists():
-        # Ayuda de diagnóstico: mostramos qué hay realmente en el repo
+        # Ayuda de diagnóstico: mostrAINDO qué hay realmente en el repo
         contenido_base = sorted(p.name for p in BASE_DIR.iterdir())
         data_dir = BASE_DIR / "data"
         contenido_data = (
@@ -92,8 +91,8 @@ def reset_filters(columns: list[str], key_prefix: str):
 def render_section(df: pd.DataFrame, columns: list[str], key_prefix: str, title: str):
     st.subheader(title)
     st.caption(
-        "Elegí uno o varios valores en cualquier columna: las opciones del resto "
-        "se filtran automáticamente en base a tu selección."
+        "Se puede seleccionar uno o varias opciones en cualquier columna: las opciones del resto "
+        "se filtrán automáticamente"
     )
 
     col_btn, _ = st.columns([1, 6])
@@ -117,15 +116,14 @@ def render_section(df: pd.DataFrame, columns: list[str], key_prefix: str, title:
 
 
 def main():
-    st.title("🚢 Base de Exportación")
+    st.title("🚢 DB Export")
     st.markdown(
-        "Explorá la base de **Exportadores** y **Navieras**. Cualquier campo que "
-        "selecciones acota automáticamente las opciones de los demás campos."
+        "by AGVM"
     )
 
     exportadores, navieras = load_data()
 
-    tab1, tab2 = st.tabs(["📦 Exportadores", "🚢 Navieras"])
+    tab1, tab2 = st.tabs(["🛻 Exportadores", "🚢 Navieras"])
 
     with tab1:
         columns_exp = ["SHIPPER", "POD", "COMMODITY", "HS CODE", "CONSIGNATARIO", "EORI"]

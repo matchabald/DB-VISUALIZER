@@ -97,7 +97,7 @@ def render_section(df: pd.DataFrame, columns: list[str], key_prefix: str, title:
 
     col_btn, _ = st.columns([1, 6])
     with col_btn:
-        if st.button("🔄 Limpiar filtros", key=f"reset_{key_prefix}"):
+        if st.button("🧹 Limpiar filtros", key=f"reset_{key_prefix}"):
             reset_filters(columns, key_prefix)
             st.rerun()
 

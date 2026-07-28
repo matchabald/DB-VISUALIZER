@@ -54,7 +54,7 @@ def cross_filter(df: pd.DataFrame, columns: list[str], key_prefix: str) -> pd.Da
     cols_widgets = st.columns(len(columns))
 
     for i, col in enumerate(columns):
-        # Filtramos el df usando las selecciones de TODAS las demás columnas
+        # Filtramos el df usando las selecciones de TODAS las demás columnas -- revisar q max 4
         temp = df.copy()
         for other_col, values in selections.items():
             if other_col != col and values:
@@ -114,7 +114,7 @@ def render_section(df: pd.DataFrame, columns: list[str], key_prefix: str, title:
         mime="text/csv",
     )
 
-
+#esto es basicament la cara o la fn main de la app 
 def main():
     st.title("🚢 DB Export")
     st.markdown(
